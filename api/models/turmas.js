@@ -1,19 +1,14 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const Turma = sequelize.define('Turma', {
+  const Turmas = sequelize.define('Turmas', {
     data_inicio: DataTypes.DATEONLY
   }, {});
-  Turma.associate = function(models) {
-    // associations can be defined here
+  Turmas.associate = function(models) {
     Turmas.hasMany(models.Matriculas, {
       foreignKey: 'turma_id'
     })
-    Turmas.belongsTo(models.Pessoas, {
-      foreignKey: 'docente_id'
-    })
-    Turmas.belongsTo(models.Niveis, {
-      foreignKey: 'nivel_id'
-    })
+    Turmas.belongsTo(models.Pessoas)
+    Turmas.belongsTo(models.Niveis);
   };
-  return Turma;
+  return Turmas;
 };
